@@ -8,7 +8,7 @@ import {
 } from '../../support/basics/homePage';
 
 describe('Verify Home page elements', () => {
-  it('TC-001. English language should exist, be interactable & visible', () => {
+  it('TC-001. Verify switching language to Spanish', () => {
     cy.visit('/');
     cy.getBySelData('countryLanguageSelector').should(exist).click();
     cy.get('.css-8f7wnq-control')
