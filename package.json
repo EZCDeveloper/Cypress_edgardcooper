@@ -1,0 +1,17 @@
+{
+  "name": "rooftopchallenge",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cy:open": "npx cypress open",
+    "cy:run": "npx cypress run",
+    "cy:run:e2e": "npx cypress run --headless --browser chrome --spec '**/e2e/**'"
+  },
+  "author": "Emanuel Zini",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^12.17.3"
+  }
+}
