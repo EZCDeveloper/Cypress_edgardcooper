@@ -1,7 +1,11 @@
 /// <reference types="cypress" />
 
 import { beVisible, exist } from '../../support/basics/constants';
-import { selCountryLanguage } from '../../support/basics/homePage';
+import {
+  homeTitle,
+  okButton,
+  selCountryLanguage,
+} from '../../support/basics/homePage';
 
 describe('Verify Home page elements', () => {
   it('TC-001. English language should exist, be interactable & visible', () => {
@@ -10,8 +14,13 @@ describe('Verify Home page elements', () => {
     cy.get('.css-8f7wnq-control')
       .eq(1)
       .click()
-      .contains(selCountryLanguage.language[0])
-      .should(beVisible)
-      .click();
+      .then(() => {
+        cy.contains(selCountryLanguage.language[5]).should(exist).click();
+      });
+
+    // Verify switched to Spanish
+    cy.contains('button', okButton).click();
+    cy.location('pathname').should('include', '/es');
+    cy.contains(homeTitle).should(beVisible);
   });
 });

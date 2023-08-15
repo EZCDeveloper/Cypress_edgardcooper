@@ -12,3 +12,9 @@ export const selCountryLanguage = {
     'español',
   ],
 };
+
+// Titles
+export const homeTitle = 'Comida de verdad';
+
+// Buttons
+export const okButton = 'OK';
