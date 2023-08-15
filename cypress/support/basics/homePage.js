@@ -14,7 +14,8 @@ export const selCountryLanguage = {
 };
 
 // Titles
-export const homeTitle = 'Comida de verdad';
+export const spanishHomeTitle = 'Comida de verdad';
+export const englishHomeTitle = 'Real food';
 
 // Buttons
 export const okButton = 'OK';

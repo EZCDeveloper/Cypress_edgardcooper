@@ -2,25 +2,48 @@
 
 import { beVisible, exist } from '../../support/basics/constants';
 import {
-  homeTitle,
+  englishHomeTitle,
   okButton,
   selCountryLanguage,
+  spanishHomeTitle,
 } from '../../support/basics/homePage';
 
 describe('Verify Home page elements', () => {
-  it('TC-001. Verify switching language to Spanish', () => {
+  beforeEach(() => {
     cy.visit('/');
+  });
+
+  it('TC_01. Verify default Language is English. Verify default url landing is English', () => {
+    // Verify url landing and language is set in English
+    cy.location('pathname').should('include', '/en');
+
+    // Verify English language is set in the Selector
+    cy.getBySelData('countryLanguageSelector').should(exist).click();
+    cy.get('.css-8f7wnq-control')
+      .eq(1)
+      .contains(selCountryLanguage.language[0])
+      .should(beVisible);
+
+    // Verify Title home page
+    cy.contains(englishHomeTitle).should(beVisible);
+  });
+
+  it('TC-002. Verify switching language to Spanish. Verify new url landing is Spanish', () => {
     cy.getBySelData('countryLanguageSelector').should(exist).click();
     cy.get('.css-8f7wnq-control')
       .eq(1)
       .click()
+      .as('setSpanish')
       .then(() => {
         cy.contains(selCountryLanguage.language[5]).should(exist).click();
       });
+    cy.get('@setSpanish')
+      .contains(selCountryLanguage.language[5])
+      .and(beVisible);
 
     // Verify switched to Spanish
     cy.contains('button', okButton).click();
     cy.location('pathname').should('include', '/es');
-    cy.contains(homeTitle).should(beVisible);
+    cy.contains(spanishHomeTitle).should(beVisible);
   });
 });

@@ -6,4 +6,6 @@ This repository was created for educational purposes only.
 
 # Test Cases
 
-TC001: Should verify that we can switch to Spanish language. Verify that the page efectivly changed into Spanish.
+TC01: Should verify that default Language is English. Verify url landing, control language selector and home page title.
+
+TC02: Should verify that we can switch to Spanish language. Verify that the page efectively changed into Spanish. Verify url landing, control language selector and home page title.
