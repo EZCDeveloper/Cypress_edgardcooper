@@ -1,6 +1,11 @@
 /// <reference types="cypress" />
 
-import { beVisible, exist } from '../../support/basics/constants';
+import {
+  beVisible,
+  exist,
+  include,
+  includeText,
+} from '../../support/basics/constants';
 import {
   englishHomeTitle,
   okButton,
@@ -13,9 +18,9 @@ describe('Verify Home page elements', () => {
     cy.visit('/');
   });
 
-  it('TC_01. Verify default Language is English. Verify default url landing is English', () => {
+  it.only('TC_01. Verify default Language is English. Verify default url landing is English', () => {
     // Verify url landing and language is set in English
-    cy.location('pathname').should('include', '/en');
+    cy.location('pathname').should(include, '/en');
 
     // Verify English language is set in the Selector
     cy.getBySelData('countryLanguageSelector').should(exist).click();
@@ -23,6 +28,17 @@ describe('Verify Home page elements', () => {
       .eq(1)
       .contains(selCountryLanguage.language[0])
       .should(beVisible);
+
+    // Verifying all languajes iterating over them
+    cy.getBySelData('countryLanguageSelector').click({ force: true });
+    cy.get('.css-8f7wnq-control')
+      .eq(1)
+      .click()
+      .then(() => {
+        cy.get('.css-13pb2gt-option').each((item, index) => {
+          cy.wrap(item).should(includeText, selCountryLanguage.language[index]);
+        });
+      });
 
     // Verify Title home page
     cy.contains(englishHomeTitle).should(beVisible);
