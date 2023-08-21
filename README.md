@@ -9,3 +9,5 @@ This repository was created for educational purposes only.
 TC01: Should verify that default Language is English. Verify url landing, control language selector and home page title.
 
 TC02: Should verify that we can switch to Spanish language. Verify that the page efectively changed into Spanish. Verify url landing, control language selector and home page title.
+
+TC03: Should verify al links from the Home header Navbar for the English languaje. Verify urls.

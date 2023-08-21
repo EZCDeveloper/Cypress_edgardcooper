@@ -19,3 +19,9 @@ export const englishHomeTitle = 'Real food';
 
 // Buttons
 export const okButton = 'OK';
+
+// Navbar
+export const navBar = {
+  homeTitle: ['Dogs', 'Cats', 'Store finder'],
+  urlNav: ['dogs', 'cats', 'store-locator'],
+};

@@ -8,6 +8,7 @@ import {
 } from '../../support/basics/constants';
 import {
   englishHomeTitle,
+  navBar,
   okButton,
   selCountryLanguage,
   spanishHomeTitle,
@@ -18,7 +19,7 @@ describe('Verify Home page elements', () => {
     cy.visit('/');
   });
 
-  it.only('TC_01. Verify default Language is English. Verify default url landing is English', () => {
+  it('TC_01. Verify default Language is English. Verify default url landing is English', () => {
     // Verify url landing and language is set in English
     cy.location('pathname').should(include, '/en');
 
@@ -61,5 +62,19 @@ describe('Verify Home page elements', () => {
     cy.contains('button', okButton).click();
     cy.location('pathname').should('include', '/es');
     cy.contains(spanishHomeTitle).should(beVisible);
+  });
+
+  it('TC_003. Verify each link on nav bar', () => {
+    const { homeTitle, urlNav } = navBar;
+
+    homeTitle.forEach((page, index) => {
+      cy.get('#site-header li a')
+        .contains(page)
+        .click()
+        .then(() => {
+          cy.location('pathname').should('eq', `/en/${urlNav[index]}/`);
+          cy.go('back');
+        });
+    });
   });
 });
